@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "264491915352",
+    "project_id": "carrer-compas",
+    "storage_bucket": "carrer-compas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:264491915352:android:86b6d91fa95041c8f4122d",
+        "android_client_info": {
+          "package_name": "com.example.career_compass"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0CQJHS7EKdOhHkmnK6qIC6OsAxgrBYN4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
