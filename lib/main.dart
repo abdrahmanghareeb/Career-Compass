@@ -1,6 +1,8 @@
 import 'package:career_compass/Layouts/GetStarted.dart';
+import 'package:career_compass/Layouts/RegisterScreen.dart';
 import 'package:career_compass/Layouts/splashScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -22,12 +24,18 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+            applyElevationOverlayColor: false,
+            appBarTheme: AppBarTheme(
+                systemOverlayStyle: SystemUiOverlayStyle(
+                  systemNavigationBarColor: HexColor("#0A0A0A"),
+                  statusBarIconBrightness: Brightness.dark,
+                )),
           textTheme: TextTheme(titleLarge: TextStyle(fontWeight: FontWeight.bold)),
           scaffoldBackgroundColor: HexColor("#FBF9F9")
           // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           // useMaterial3: true,
         ),
-        home: splashScreen()
+        home: SplashScreen(),
     );
   }
 }

@@ -1,8 +1,23 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:hexcolor/hexcolor.dart';
+
+void navigateTo({@required context , @required widget}) {
+  Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => widget,
+      ));
+}
+void navigateReplacementTo({@required context , @required widget}) {
+  Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => widget,
+      ));
+}
 
 Widget defaultFormField(
     {prefixIcon,
@@ -48,4 +63,27 @@ Widget TheAppButton({required VoidCallback function, required String text}) {
             text,
             style: TextStyle(color: Colors.white),
           ))));
+}
+
+Widget ClickableText({required context, mainText = "", secText = "" ,required GestureTapCallback function}){
+  return GestureDetector(
+    onTap: function,
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+            style: Theme.of(context).textTheme.bodyLarge ,
+            "$mainText"
+        ),
+        Text(
+            style: TextStyle(
+                fontFamily: Theme.of(context).textTheme.bodyLarge?.fontFamily,
+                color: HexColor("#50C2C9"),
+                fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize
+            ) ,
+            "$secText"
+        ),
+      ],
+    ),
+  );
 }

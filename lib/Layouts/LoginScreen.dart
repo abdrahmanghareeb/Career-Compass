@@ -1,6 +1,9 @@
+import 'package:career_compass/Layouts/RegisterScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 import '../Shared/Components/components.dart';
 import '../Shared/Cubit/app_cubit.dart';
@@ -41,7 +44,7 @@ class LoginScreen extends StatelessWidget {
                             ),
                             Image.asset("assets/login.png"),
                             defaultFormField(
-                              TextInputType: TextInputType.emailAddress,
+                                TextInputType: TextInputType.emailAddress,
                                 controller: cubit.emailController,
                                 label: "Enter your email",
                                 prefixIcon: Icons.email_outlined,
@@ -51,7 +54,7 @@ class LoginScreen extends StatelessWidget {
                             ),
                             defaultFormField(
                                 controller: cubit.passwordController,
-                              TextInputType: TextInputType.visiblePassword,
+                                TextInputType: TextInputType.visiblePassword,
                                 label: "Enter password",
                                 onIconTap: () {
                                   show = !show;
@@ -69,11 +72,25 @@ class LoginScreen extends StatelessWidget {
                             TheAppButton(
                                 function: () {
                                   formKey.currentState?.validate();
-                                  print("Email : ${cubit.emailController.text.toString()}");
-                                  print("password : ${cubit.passwordController.text.toString()}");
+                                  print(
+                                      "Email : ${cubit.emailController.text.toString()}");
+                                  print(
+                                      "password : ${cubit.passwordController.text.toString()}");
                                   cubit.changeLoginState();
-                                  },
+                                },
                                 text: "Sign in"),
+                            SizedBox(height: 20),
+                            ClickableText(
+                              context: context ,mainText: "Don’t have an account ? ",secText: "Sign Up" , function: (){
+                                navigateTo(context: context, widget: RegisterScreen());
+                              }
+                            ),
+                            SizedBox(height: 20),
+                            ClickableText(
+                              context: context , secText: "Forgot Password" , function: (){
+
+                              }
+                            ),
                           ],
                         ),
                       ),
