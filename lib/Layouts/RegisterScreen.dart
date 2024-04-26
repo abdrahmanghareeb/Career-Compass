@@ -119,5 +119,3 @@ class RegisterScreen extends StatelessWidget {
     );
   }
 }
-
-void pressed() {}
