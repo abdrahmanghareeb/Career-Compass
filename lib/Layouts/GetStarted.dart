@@ -37,7 +37,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
                   style: Theme.of(context).textTheme.bodyLarge ,
                   "Introducing “Career Compass”- the ultimate job qualification app. It offers a vast up-to-date database of job listings with detailed qualification breakdowns empowering job seekers to tailor their applications. Find the perfect match for your qualifications with Career Compass today!"),
              SizedBox(height: 20,),
-              TheAppButton(function: () => navigateTo(context: context , widget: LoginScreen()), text: "Get Started"),
+              appButton(function: () => navigateTo(context: context , widget: LoginScreen()), text: "Get Started"),
             ],
           ),
         ),]

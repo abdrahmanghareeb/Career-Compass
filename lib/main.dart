@@ -1,4 +1,5 @@
 import 'package:career_compass/Layouts/GetStarted.dart';
+import 'package:career_compass/Layouts/HomeScreen.dart';
 import 'package:career_compass/Layouts/RegisterScreen.dart';
 import 'package:career_compass/Layouts/splashScreen.dart';
 import 'package:career_compass/Shared/Constants/color.dart';
@@ -28,6 +29,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             applyElevationOverlayColor: false,
             appBarTheme: AppBarTheme(
+              color: HexColor(main_color),
                 systemOverlayStyle: SystemUiOverlayStyle(
                   systemNavigationBarColor: HexColor(appGrey_color),
                   statusBarIconBrightness: Brightness.dark,
@@ -37,7 +39,7 @@ class MyApp extends StatelessWidget {
           // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           // useMaterial3: true,
         ),
-        home: ProfileScreen(),
+        home: HomeScreen(),
     );
   }
 }
