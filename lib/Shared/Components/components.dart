@@ -1,4 +1,5 @@
 
+import 'package:career_compass/Shared/Constants/color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -78,7 +79,7 @@ Widget ClickableText({required context, mainText = "", secText = "" ,required Ge
         Text(
             style: TextStyle(
                 fontFamily: Theme.of(context).textTheme.bodyLarge?.fontFamily,
-                color: HexColor("#50C2C9"),
+                color: HexColor(main_color),
                 fontSize: Theme.of(context).textTheme.bodyLarge?.fontSize
             ) ,
             "$secText"
