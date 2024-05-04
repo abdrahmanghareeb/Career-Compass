@@ -1,4 +1,5 @@
 import 'package:career_compass/Layouts/RegisterScreen.dart';
+import 'package:career_compass/Shared/Constants/color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

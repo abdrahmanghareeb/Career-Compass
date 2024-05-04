@@ -28,12 +28,13 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             applyElevationOverlayColor: false,
             appBarTheme: AppBarTheme(
+              color: HexColor(main_color),
                 systemOverlayStyle: SystemUiOverlayStyle(
                   systemNavigationBarColor: HexColor(appGrey_color),
                   statusBarIconBrightness: Brightness.dark,
                 )),
           textTheme: TextTheme(titleLarge: TextStyle(fontWeight: FontWeight.bold)),
-          scaffoldBackgroundColor: HexColor(main_color)
+          scaffoldBackgroundColor: Colors.white
           // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           // useMaterial3: true,
         ),

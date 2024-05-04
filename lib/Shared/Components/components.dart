@@ -1,4 +1,5 @@
 
+import 'package:career_compass/Shared/Constants/color.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,8 @@ Widget defaultFormField(
       onIconTap,
     required controller,
     required label,
-    required validator,
+     validator,
+      color = "#FFFFFF",
     TextInputType = TextInputType.text}) {
   return Container(
       decoration: const BoxDecoration(
@@ -42,6 +44,9 @@ Widget defaultFormField(
         },
         keyboardType: TextInputType,
         decoration: InputDecoration(
+          focusColor: HexColor(color),
+          fillColor: HexColor(color),
+          hoverColor: HexColor(color),
           prefixIcon: Icon(prefixIcon),
           suffixIcon: GestureDetector(onTap : onIconTap ,child: Icon(suffixIcon)),
           label: Text("$label"),
@@ -65,6 +70,7 @@ Widget TheAppButton({required VoidCallback function, required String text}) {
           ))));
 }
 
+//used in the login/sign_up screen
 Widget ClickableText({required context, mainText = "", secText = "" ,required GestureTapCallback function}){
   return GestureDetector(
     onTap: function,
