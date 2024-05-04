@@ -1,12 +1,14 @@
 import 'package:career_compass/Layouts/GetStarted.dart';
 import 'package:career_compass/Layouts/RegisterScreen.dart';
 import 'package:career_compass/Layouts/splashScreen.dart';
+import 'package:career_compass/Shared/Constants/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 import 'Layouts/LoginScreen.dart';
+import 'Layouts/ProfileScreen.dart';
 import 'Shared/Cubit/app_observer.dart';
 
 void main() {
@@ -27,15 +29,15 @@ class MyApp extends StatelessWidget {
             applyElevationOverlayColor: false,
             appBarTheme: AppBarTheme(
                 systemOverlayStyle: SystemUiOverlayStyle(
-                  systemNavigationBarColor: HexColor("#0A0A0A"),
+                  systemNavigationBarColor: HexColor(appGrey_color),
                   statusBarIconBrightness: Brightness.dark,
                 )),
           textTheme: TextTheme(titleLarge: TextStyle(fontWeight: FontWeight.bold)),
-          scaffoldBackgroundColor: HexColor("#FBF9F9")
+          scaffoldBackgroundColor: HexColor(main_color)
           // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           // useMaterial3: true,
         ),
-        home: SplashScreen(),
+        home: ProfileScreen(),
     );
   }
 }
