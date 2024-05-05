@@ -70,7 +70,7 @@ class LoginScreen extends StatelessWidget {
                             SizedBox(
                               height: 30,
                             ),
-                            TheAppButton(
+                            appButton(
                                 function: () {
                                   formKey.currentState?.validate();
                                   print(
@@ -81,13 +81,13 @@ class LoginScreen extends StatelessWidget {
                                 },
                                 text: "Sign in"),
                             SizedBox(height: 20),
-                            ClickableText(
+                            clickableText(
                               context: context ,mainText: "Don’t have an account ? ",secText: "Sign Up" , function: (){
                                 navigateTo(context: context, widget: RegisterScreen());
                               }
                             ),
                             SizedBox(height: 20),
-                            ClickableText(
+                            clickableText(
                               context: context , secText: "Forgot Password" , function: (){
 
                               }

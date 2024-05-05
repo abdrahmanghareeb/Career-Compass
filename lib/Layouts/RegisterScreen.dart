@@ -89,7 +89,7 @@ class RegisterScreen extends StatelessWidget {
                             SizedBox(
                               height: 30,
                             ),
-                            TheAppButton(
+                            appButton(
                                 function: () {
                                   formKey.currentState?.validate();
                                   print(
@@ -100,7 +100,7 @@ class RegisterScreen extends StatelessWidget {
                                 },
                                 text: "Sign up"),
                             SizedBox(height: 20),
-                            ClickableText(
+                            clickableText(
                                 context: context ,mainText: "Already have an account ? ",secText: "Sign in" , function: (){
                               navigateTo(context: context, widget: LoginScreen());
                             }
