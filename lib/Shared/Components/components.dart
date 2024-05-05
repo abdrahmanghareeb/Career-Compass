@@ -25,7 +25,8 @@ Widget defaultFormField(
       onIconTap,
     required controller,
     required label,
-    required validator,
+     validator,
+      color = "#FFFFFF",
     TextInputType = TextInputType.text}) {
   return Container(
       decoration: const BoxDecoration(
@@ -42,6 +43,9 @@ Widget defaultFormField(
         },
         keyboardType: TextInputType,
         decoration: InputDecoration(
+          focusColor: HexColor(color),
+          fillColor: HexColor(color),
+          hoverColor: HexColor(color),
           prefixIcon: Icon(prefixIcon),
           suffixIcon: GestureDetector(onTap : onIconTap ,child: Icon(suffixIcon)),
           label: Text("$label"),
@@ -111,7 +115,7 @@ Widget cardItem({required text}){
         ),
       ),
       style: TextButton.styleFrom(
-          backgroundColor: HexColor(mostSearchedColor),
+          backgroundColor: HexColor(most_searched_color),
           shape: LinearBorder(),
           alignment: Alignment.centerLeft
       ),

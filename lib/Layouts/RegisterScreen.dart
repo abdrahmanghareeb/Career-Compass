@@ -42,7 +42,7 @@ class RegisterScreen extends StatelessWidget {
                             ),
                             defaultFormField(
                                 TextInputType: TextInputType.text,
-                                controller: cubit.emailController,
+                                controller: cubit.fullNameController,
                                 label: "Enter Your Full Name",
                                 prefixIcon: Icons.email_outlined,
                                 validator: "Full Name is required!!"),
@@ -73,7 +73,7 @@ class RegisterScreen extends StatelessWidget {
                                     : Icons.remove_red_eye_outlined,
                                 validator: "password is required!!"),
                             defaultFormField(
-                                controller: cubit.passwordController,
+                                controller: cubit.confirmPasswordController,
                                 TextInputType: TextInputType.visiblePassword,
                                 label: "confirm password",
                                 onIconTap: () {

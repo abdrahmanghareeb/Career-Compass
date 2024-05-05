@@ -11,7 +11,13 @@ class AppCubit extends Cubit<AppState> {
   AppCubit() : super(AppInitial());
 
   TextEditingController emailController = TextEditingController();
+  TextEditingController fullNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+  TextEditingController jobDescriptionController = TextEditingController();
+  TextEditingController jobTitleController = TextEditingController();
+  TextEditingController feedbackController = TextEditingController();
+
 
   static AppCubit get(context) => BlocProvider.of(context);
 

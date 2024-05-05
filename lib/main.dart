@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
                   statusBarIconBrightness: Brightness.dark,
                 )),
           textTheme: TextTheme(titleLarge: TextStyle(fontWeight: FontWeight.bold)),
-          scaffoldBackgroundColor: HexColor(main_color)
+          scaffoldBackgroundColor: Colors.white
           // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           // useMaterial3: true,
         ),
