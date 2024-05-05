@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../Shared/Components/components.dart';
 
-//profileScreen done.
+//profileScreen UI done..
 
 class ProfileScreen extends StatelessWidget {
   @override
