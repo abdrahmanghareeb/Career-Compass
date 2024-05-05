@@ -29,8 +29,8 @@ Widget defaultFormField(
       color = "#FFFFFF",
     TextInputType = TextInputType.text}) {
   return Container(
-      decoration: const BoxDecoration(
-        color: Colors.white,
+      decoration:  BoxDecoration(
+        color: HexColor(color),
         border: null,
         borderRadius: BorderRadius.horizontal(
             left: Radius.circular(15), right: Radius.circular(15)),
@@ -59,13 +59,13 @@ Widget appButton({required VoidCallback function, required String text}) {
     minWidth: double.infinity,
       onPressed: function,
       child: Container(
-          height: 50,
+          height: 60,
           decoration: BoxDecoration(
               shape: BoxShape.rectangle, color: HexColor("#50C2C9")),
           child: Center(
               child: Text(
             text,
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.white ,fontSize: 20),
           ))));
 }
 

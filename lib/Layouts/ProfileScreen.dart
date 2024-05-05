@@ -19,6 +19,7 @@ class ProfileScreen extends StatelessWidget {
         builder: (context, state) {
           var cubit = AppCubit.get(context);
           return Scaffold(
+            appBar: AppBarComponent(title: "Edit Profile" ,isSearch: false),
             body: SingleChildScrollView(
               child: SafeArea(
                 child: Padding(
@@ -27,38 +28,45 @@ class ProfileScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image.asset("assets/eclipse.png"),
                       Text("User Photo",
                           style: Theme.of(context).textTheme.titleLarge),
+                      SizedBox(height: 15,),
                       Center(
                         child: Image.asset("assets/userPhoto.png",
                             height: 100, width: 100),
                       ),
+                      SizedBox(height: 15,),
                       Text("User Name",
                           style: Theme.of(context).textTheme.titleLarge),
+                      SizedBox(height: 15,),
                       Center(
                         child: defaultFormField(
                           color: Grey_color,
                             controller: cubit.fullNameController,
                             label: "Enter your full name"),
-
                       ),
+                      SizedBox(height: 15,),
                       Text("Job Title",
                           style: Theme.of(context).textTheme.titleLarge),
+                      SizedBox(height: 15,),
                       Center(
                         child: defaultFormField(
                             color: Grey_color,
                             controller: cubit.jobTitleController,
                             label: "Enter your job title"),
                       ),
+                      SizedBox(height: 15,),
                       Text("Job Description",
                           style: Theme.of(context).textTheme.titleLarge),
+                      SizedBox(height: 15,),
                       Center(
                         child: defaultFormField(
                             color: Grey_color,
                             controller: cubit.jobDescriptionController,
                             label: "Enter your job description"),
                       ),
+                      SizedBox(height: 30),
+                      appButton(function: (){ }, text: "Summit")
                     ],
                   ),
                 ),

@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
             appBarTheme: AppBarTheme(
               color: HexColor(main_color),
                 systemOverlayStyle: SystemUiOverlayStyle(
-                  systemNavigationBarColor: HexColor(appGrey_color),
+                  systemNavigationBarColor: Colors.white,
                   statusBarIconBrightness: Brightness.dark,
                 )),
           textTheme: TextTheme(titleLarge: TextStyle(fontWeight: FontWeight.bold)),
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
           // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           // useMaterial3: true,
         ),
-        home: HomeScreen(),
+        home: ProfileScreen(),
     );
   }
 }
