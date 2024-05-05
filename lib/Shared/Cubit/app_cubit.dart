@@ -1,7 +1,7 @@
 import 'package:career_compass/Models/UserModel.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+
 import 'package:bloc/bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,7 +36,7 @@ class AppCubit extends Cubit<AppState> {
       emit(LoginErrorState());
     });
   }
-  void changeLoginState({required email , required password , required fullName}){
+  void changeLoginState({required email , required password , fullName = ""}){
     emit(LoginLoadingtate());
     FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password)
         .then((value) {

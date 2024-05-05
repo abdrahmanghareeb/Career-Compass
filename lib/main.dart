@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:career_compass/Layouts/GetStarted.dart';
 import 'package:career_compass/Layouts/HomeScreen.dart';
 import 'package:career_compass/Layouts/RegisterScreen.dart';
@@ -16,9 +18,14 @@ import 'Shared/Cubit/app_observer.dart';
 void main() async {
   Bloc.observer = MyBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
-
-  await Firebase.initializeApp();
-
+  if(Platform.isAndroid){
+  await Firebase.initializeApp(
+        options: const FirebaseOptions(
+            apiKey: "AIzaSyA0CQJHS7EKdOhHkmnK6qIC6OsAxgrBYN4",
+            appId: "1:264491915352:android:86b6d91fa95041c8f4122d",
+            messagingSenderId: "264491915352",
+            projectId: "carrer-compas"));
+  }
   runApp(const MyApp());
 }
 

@@ -1,9 +1,9 @@
 import 'package:career_compass/Layouts/LoginScreen.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
 
 import '../Shared/Components/components.dart';
 import '../Shared/Cubit/app_cubit.dart';
@@ -109,9 +109,9 @@ class RegisterScreen extends StatelessWidget {
                                 function: () {
                                   formKey.currentState?.validate();
                                   cubit.changeRegisterState(
-                                      email: cubit.emailController,
-                                      password: cubit.passwordController,
-                                      fullName: cubit.fullNameController);
+                                      email: cubit.emailController.text,
+                                      password: cubit.passwordController.text,
+                                      fullName: cubit.fullNameController.text);
                                 },
                                 text: "Sign up"),
                             SizedBox(height: 20),
