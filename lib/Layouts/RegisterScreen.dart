@@ -1,12 +1,17 @@
 import 'package:career_compass/Layouts/LoginScreen.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../Shared/Components/components.dart';
 import '../Shared/Cubit/app_cubit.dart';
 
 class RegisterScreen extends StatelessWidget {
+
+  // final ref = FirebaseDatabase.instance.ref("items");
+
   var formKey = GlobalKey<FormState>();
 
   // to toggle eye icon
@@ -17,7 +22,18 @@ class RegisterScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => AppCubit(),
       child: BlocConsumer<AppCubit, AppState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state is RegisterErrorState) {
+            Fluttertoast.showToast(
+                msg: "Error registering your account",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1,
+                backgroundColor: Colors.red,
+                textColor: Colors.white,
+                fontSize: 16.0);
+          }
+        },
         builder: (context, state) {
           var cubit = AppCubit.get(context);
           return Form(
@@ -92,19 +108,21 @@ class RegisterScreen extends StatelessWidget {
                             appButton(
                                 function: () {
                                   formKey.currentState?.validate();
-                                  print(
-                                      "Email : ${cubit.emailController.text.toString()}");
-                                  print(
-                                      "password : ${cubit.passwordController.text.toString()}");
-                                  cubit.changeLoginState();
+                                  cubit.changeRegisterState(
+                                      email: cubit.emailController,
+                                      password: cubit.passwordController,
+                                      fullName: cubit.fullNameController);
                                 },
                                 text: "Sign up"),
                             SizedBox(height: 20),
                             clickableText(
-                                context: context ,mainText: "Already have an account ? ",secText: "Sign in" , function: (){
-                              navigateTo(context: context, widget: LoginScreen());
-                            }
-                            ),
+                                context: context,
+                                mainText: "Already have an account ? ",
+                                secText: "Sign in",
+                                function: () {
+                                  navigateTo(
+                                      context: context, widget: LoginScreen());
+                                }),
                           ],
                         ),
                       ),

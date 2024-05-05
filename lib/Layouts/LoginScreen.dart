@@ -73,11 +73,10 @@ class LoginScreen extends StatelessWidget {
                             appButton(
                                 function: () {
                                   formKey.currentState?.validate();
-                                  print(
-                                      "Email : ${cubit.emailController.text.toString()}");
-                                  print(
-                                      "password : ${cubit.passwordController.text.toString()}");
-                                  cubit.changeLoginState();
+                                  cubit.changeRegisterState(
+                                      email: cubit.emailController,
+                                      password: cubit.passwordController,
+                                      fullName: cubit.fullNameController);
                                 },
                                 text: "Sign in"),
                             SizedBox(height: 20),

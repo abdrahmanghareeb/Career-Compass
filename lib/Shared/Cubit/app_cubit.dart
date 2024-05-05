@@ -1,4 +1,6 @@
-
+import 'package:career_compass/Models/UserModel.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -21,9 +23,34 @@ class AppCubit extends Cubit<AppState> {
 
   static AppCubit get(context) => BlocProvider.of(context);
 
-  void changeLoginState(){
-    emit(LoginState());
+  void changeRegisterState({required email , required password , required fullName}){
+    emit(LoginLoadingtate());
+    FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password)
+        .then((value) {
+          print(value.user?.email);
+          print(value.user?.phoneNumber);
+          print(value.user?.uid);
+
+          emit(LoginSuccessState());
+    }).onError((error, stackTrace) {
+      emit(LoginErrorState());
+    });
   }
+  void changeLoginState({required email , required password , required fullName}){
+    emit(LoginLoadingtate());
+    FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password)
+        .then((value) {
+          print(value.user?.email);
+          print(value.user?.phoneNumber);
+          print(value.user?.uid);
+
+          emit(LoginSuccessState());
+    }).onError((error, stackTrace) {
+      emit(LoginErrorState());
+    });
+  }
+
+
   void changeIconState(){
     emit(LoginIconState());
   }

@@ -37,7 +37,10 @@ dependencies:
   hexcolor: ^3.0.1
   cupertino_icons: ^1.0.6
   flutter_bloc: ^8.1.5
-  firebase_core: ^2.30.1
+  firebase_core: ^1.24.0
+  firebase_auth: ^3.11.2
+  fluttertoast: ^8.2.5
+  firebase_database: ^9.1.7
 
 dev_dependencies:
   flutter_test:
