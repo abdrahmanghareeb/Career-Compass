@@ -62,6 +62,7 @@ class LoginScreen extends StatelessWidget {
                                   print(show);
                                   cubit.changeIconState();
                                 },
+                                obsecure: show ,
                                 prefixIcon: Icons.password_sharp,
                                 suffixIcon: show
                                     ? Icons.remove_red_eye
