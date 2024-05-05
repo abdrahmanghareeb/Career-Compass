@@ -8,6 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 
+import 'Layouts/Chatbot.dart';
 import 'Layouts/LoginScreen.dart';
 import 'Layouts/ProfileScreen.dart';
 import 'Shared/Cubit/app_observer.dart';
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
           // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           // useMaterial3: true,
         ),
-        home: HomeScreen(),
+        home: ChatBotScreen(),
     );
   }
 }
