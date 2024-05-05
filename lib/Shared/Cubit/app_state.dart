@@ -13,3 +13,6 @@ final class LoginErrorState extends AppState {}
 final class RegisterSuccessState extends AppState {}
 final class RegisterLoadingState extends AppState {}
 final class RegisterErrorState extends AppState {}
+final class createUserSuccessState extends AppState {}
+final class createUserLoadingState extends AppState {}
+final class createUserErrorState extends AppState {}

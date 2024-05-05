@@ -16,6 +16,7 @@ class RegisterScreen extends StatelessWidget {
 
   // to toggle eye icon
   bool show = true;
+  bool confirmShow = true;
 
   @override
   Widget build(BuildContext context) {
@@ -75,12 +76,21 @@ class RegisterScreen extends StatelessWidget {
                               height: 20,
                             ),
                             defaultFormField(
+                                TextInputType: TextInputType.phone,
+                                controller: cubit.phoneController,
+                                label: "Phone Number Email",
+                                prefixIcon: Icons.email_outlined,
+                                validator: "Phone Number is required!!"),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            defaultFormField(
                                 controller: cubit.passwordController,
+                                obsecure: show ,
                                 TextInputType: TextInputType.visiblePassword,
                                 label: "Enter password",
                                 onIconTap: () {
                                   show = !show;
-                                  print(show);
                                   cubit.changeIconState();
                                 },
                                 prefixIcon: Icons.password_sharp,
@@ -88,20 +98,6 @@ class RegisterScreen extends StatelessWidget {
                                     ? Icons.remove_red_eye
                                     : Icons.remove_red_eye_outlined,
                                 validator: "password is required!!"),
-                            defaultFormField(
-                                controller: cubit.confirmPasswordController,
-                                TextInputType: TextInputType.visiblePassword,
-                                label: "confirm password",
-                                onIconTap: () {
-                                  show = !show;
-                                  print(show);
-                                  cubit.changeIconState();
-                                },
-                                prefixIcon: Icons.password_sharp,
-                                suffixIcon: show
-                                    ? Icons.remove_red_eye
-                                    : Icons.remove_red_eye_outlined,
-                                validator: "confirm password is required!!"),
                             SizedBox(
                               height: 30,
                             ),
@@ -111,7 +107,8 @@ class RegisterScreen extends StatelessWidget {
                                   cubit.changeRegisterState(
                                       email: cubit.emailController.text,
                                       password: cubit.passwordController.text,
-                                      fullName: cubit.fullNameController.text);
+                                      fullName: cubit.fullNameController.text,
+                                  phone: cubit.phoneController.text);
                                 },
                                 text: "Sign up"),
                             SizedBox(height: 20),
