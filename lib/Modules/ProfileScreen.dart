@@ -116,19 +116,22 @@ class ProfileScreen extends StatelessWidget {
                         SizedBox(height: 30),
                         appButton(
                             function: () {
-                              formKey.currentState?.validate();
-                              cubit.ChangeLocalPhotoSuccessState();
-                              cubitAuth.Update_User(
-                                  context: context,
-                                  name: cubitAuth.fullNameController.text,
-                                  uid: FirebaseAuth.instance.currentUser?.uid
-                                      .toString(),
-                                  email:
-                                      FirebaseAuth.instance.currentUser?.email,
-                                  phone: cubitAuth.phoneController.text,
-                                  photo: user_profile_photo,
-                                  jobDis: cubit.jobDescriptionController.text,
-                                  jobTitle: cubit.jobTitleController.text);
+                              bool? formIsValid = formKey.currentState?.validate();
+                              if (formIsValid!) {
+                                cubit.ChangeLocalPhotoSuccessState();
+                                cubitAuth.Update_User(
+                                    context: context,
+                                    name: cubitAuth.fullNameController.text,
+                                    uid: FirebaseAuth.instance.currentUser?.uid
+                                        .toString(),
+                                    email:
+                                    FirebaseAuth.instance.currentUser?.email,
+                                    phone: cubitAuth.phoneController.text,
+                                    photo: user_profile_photo,
+                                    jobDis: cubit.jobDescriptionController.text,
+                                    jobTitle: cubit.jobTitleController.text);
+                              }
+
                             },
                             text: "Summit"),
                         SizedBox(height: 30),
