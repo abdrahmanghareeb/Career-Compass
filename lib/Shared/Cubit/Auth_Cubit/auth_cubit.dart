@@ -9,7 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
-import '../../../Layouts/HomeScreen.dart';
+import '../../../Layouts/Home & Profile & Settings/HomeScreen.dart';
 import '../../Constants/Constants.dart';
 
 part 'auth_state.dart';
@@ -77,7 +77,7 @@ class AuthCubit extends Cubit<AuthState> {
   void Create_User(
       {required name, required uid, required email, required phone, photo}) {
     emit(CreateUserLoadingState());
-    var model = userModel(
+    var model = UserModel(
         uid: uid,
         email: AutofillHints.email,
         phone: phone,
@@ -97,7 +97,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   void Update_User(
       {required uid,
-        name,
+      name,
       email,
       phone,
       photo,
@@ -105,7 +105,7 @@ class AuthCubit extends Cubit<AuthState> {
       jobTitle,
       required context}) {
     emit((UpdateUserLoadingState()));
-    var model = userModel(
+    var model = UserModel(
         uid: uid,
         email: email,
         job_title: jobTitle,
@@ -131,8 +131,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(GetUserLoadingState());
     FirebaseFirestore.instance.collection("users").doc(uid).get().then((value) {
       emit(GetUserSuccessState());
-      user = userModel.fromJson(value.data());
-
+      user = UserModel.fromJson(value.data());
     }).onError((error, stackTrace) {
       print(error.toString());
       emit(GetUserErrorState());

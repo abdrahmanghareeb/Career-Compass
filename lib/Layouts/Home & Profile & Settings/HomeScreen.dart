@@ -1,5 +1,5 @@
-import 'package:career_compass/Layouts/LoginScreen.dart';
-import 'package:career_compass/Modules/ProfileScreen.dart';
+import 'package:career_compass/Layouts/Login%20&%20Register/LoginScreen.dart';
+import 'package:career_compass/Layouts/Home%20&%20Profile%20&%20Settings/ProfileScreen.dart';
 import 'package:career_compass/Shared/Components/components.dart';
 import 'package:career_compass/Shared/Constants/color.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -11,8 +11,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-import '../Shared/Components/CustomShape.dart';
-import '../Shared/Cubit/Auth_Cubit/auth_cubit.dart';
+import '../../Shared/Components/CustomShape.dart';
+import '../../Shared/Cubit/Auth_Cubit/auth_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
 

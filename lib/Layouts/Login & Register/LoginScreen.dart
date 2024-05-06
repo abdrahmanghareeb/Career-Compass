@@ -1,5 +1,5 @@
-import 'package:career_compass/Layouts/HomeScreen.dart';
-import 'package:career_compass/Layouts/RegisterScreen.dart';
+import 'package:career_compass/Layouts/Home%20&%20Profile%20&%20Settings/HomeScreen.dart';
+import 'package:career_compass/Layouts/Login%20&%20Register/RegisterScreen.dart';
 import 'package:career_compass/Shared/Constants/color.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,8 +8,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-import '../Shared/Components/components.dart';
-import '../Shared/Cubit/Auth_Cubit/auth_cubit.dart';
+import '../../Shared/Components/components.dart';
+import '../../Shared/Cubit/Auth_Cubit/auth_cubit.dart';
 
 class LoginScreen extends StatelessWidget {
   var formKey = GlobalKey<FormState>();

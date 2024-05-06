@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import 'package:career_compass/Layouts/HomeScreen.dart';
+import 'package:career_compass/Layouts/Home%20&%20Profile%20&%20Settings/HomeScreen.dart';
 import 'package:career_compass/Shared/Constants/Constants.dart';
 import 'package:career_compass/Shared/Constants/color.dart';
 import 'package:career_compass/Shared/Cubit/Auth_Cubit/auth_cubit.dart';
@@ -9,9 +9,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../Shared/Cubit/App_Cubit/app_cubit.dart';
-import 'PickImage.dart';
-import '../Shared/Components/components.dart';
+import '../../Shared/Cubit/App_Cubit/app_cubit.dart';
+import '../../Modules/PickImage.dart';
+import '../../Shared/Components/components.dart';
 
 class ProfileScreen extends StatelessWidget {
   var formKey = GlobalKey<FormState>();

@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-import '../Shared/Components/components.dart';
-import '../Shared/Constants/color.dart';
-import '../Shared/Cubit/App_Cubit/app_cubit.dart';
+import '../../Shared/Components/components.dart';
+import '../../Shared/Constants/color.dart';
+import '../../Shared/Cubit/App_Cubit/app_cubit.dart';
+
+
 
 class SettingsScreen extends StatelessWidget{
 

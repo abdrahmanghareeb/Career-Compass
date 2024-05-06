@@ -1,12 +1,12 @@
-import 'package:career_compass/Layouts/LoginScreen.dart';
+import 'package:career_compass/Layouts/Login%20&%20Register/LoginScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 
-import '../Shared/Components/components.dart';
-import '../Shared/Cubit/Auth_Cubit/auth_cubit.dart';
+import '../../Shared/Components/components.dart';
+import '../../Shared/Cubit/Auth_Cubit/auth_cubit.dart';
 
 class RegisterScreen extends StatelessWidget {
 
