@@ -39,10 +39,10 @@ Widget taskCard({ required TaskModel tasksItem , @required context}){
   }
 
   return  Dismissible(
-    key: Key(tasksItem.name.toString()),
+    key: Key(tasksItem.task_id),
     background: Container(color: Colors.red,child: Icon(CupertinoIcons.delete)),
     onDismissed: (direction) {
-      // TaskCubit.get(context).deleteRowFromDB(tasksItem['id']);
+      TaskCubit.get(context).UpdateTaskStatus(id : tasksItem.task_id , status: "delete" );
     } ,
     child: Container(
       color: Colors.grey[50],
@@ -81,12 +81,12 @@ Widget taskCard({ required TaskModel tasksItem , @required context}){
               if(isDone == false){
                 isDone = !isDone;
                 print(isDone);
-                // TaskCubit.get(context).updateDatabase(status:  'done',id:  tasksItem["id"]);
+                TaskCubit.get(context).UpdateTaskStatus(id:tasksItem.task_id ,status:  "done" );
               }else{
                 isDone = !isDone;
                 print(isDone);
                 if(isArchive == false) {
-                  // TaskCubit.get(context).updateDatabase(status:  'new',id:  tasksItem["id"]);
+                  TaskCubit.get(context).UpdateTaskStatus(id:tasksItem.task_id ,status:  "new" );
                 }
               }
             },
@@ -95,12 +95,12 @@ Widget taskCard({ required TaskModel tasksItem , @required context}){
               if(isArchive == false){
                 isArchive = !isArchive;
                 print(isArchive);
-                // TaskCubit.get(context).updateDatabase(status:  'archive',id:  tasksItem["id"]);
+                TaskCubit.get(context).UpdateTaskStatus(id:tasksItem.task_id ,status:  "archive" );
               }else{
                 isArchive = !isArchive;
                 print(isArchive);
                 if(isDone == false) {
-                  // TaskCubit.get(context).updateDatabase(status:  'new',id:  tasksItem["id"]);
+                  TaskCubit.get(context).UpdateTaskStatus(id:tasksItem.task_id ,status:  "new" );
                 }
               }
             },
@@ -136,7 +136,8 @@ Widget taskCardBuilder(taskslist){
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.menu , size:90 , color: Colors.black54),
+            CircularProgressIndicator(color: Colors.black,),
+            SizedBox(height: 10,),
             Text("no tasks added, please add new tasks" ,style: TextStyle(fontSize: 15 , color: Colors.black54),)
           ],
         ),

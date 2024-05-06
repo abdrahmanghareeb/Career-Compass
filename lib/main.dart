@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:career_compass/Layouts/Home%20&%20Profile%20&%20Settings/HomeScreen.dart';
+import 'package:career_compass/Layouts/Start/splashScreen.dart';
 import 'package:career_compass/Layouts/Task%20Manager/TaskManagerScreen.dart';
 import 'package:career_compass/Shared/Constants/color.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
           // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           // useMaterial3: true,
           ),
-      home: TaskManagerScreen(),
+      home: SplashScreen(),
     );
   }
 }

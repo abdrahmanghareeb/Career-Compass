@@ -20,3 +20,11 @@ class GetAllTasksErrorState extends TaskCubitStates{}
 class UpdateIDLoadingState extends TaskCubitStates{}
 class UpdateIDSuccessState extends TaskCubitStates{}
 class UpdateIDErrorState extends TaskCubitStates{}
+
+class UpdateStatusLoadingState extends TaskCubitStates{}
+class UpdateStatusSuccessState extends TaskCubitStates{}
+class UpdateStatusErrorState extends TaskCubitStates{}
+
+class DeleteLoadingState extends TaskCubitStates{}
+class DeleteSuccessState extends TaskCubitStates{}
+class DeleteErrorState extends TaskCubitStates{}

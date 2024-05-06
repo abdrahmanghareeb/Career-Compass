@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../Shared/Components/Task_Components.dart';
 
 
-class archive extends StatefulWidget{
+class archive extends StatefulWidget {
   @override
   State<archive> createState() => _archiveState();
 }
@@ -15,15 +15,20 @@ class archive extends StatefulWidget{
 class _archiveState extends State<archive> {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<TaskCubit, TaskCubitStates>(
-      listener: (context, state) {
-
-      },
-      builder: (context, state) {
-        var taskslist = TaskCubit.get(context).archiveTasksList;
-        return taskCardBuilder(taskslist);
-      },
+    return BlocProvider(
+      create: (context) => TaskCubit()..getTaskAll(),
+      child: BlocConsumer<TaskCubit, TaskCubitStates>(
+        listener: (context, state) {
+          if(state is UpdateStatusSuccessState)
+            TaskCubit.get(context).getTaskAll();
+        },
+        builder: (context, state) {
+          var taskslist = TaskCubit
+              .get(context)
+              .archiveTasksList;
+          return taskCardBuilder(taskslist);
+        },
+      ),
     );
-
   }
 }

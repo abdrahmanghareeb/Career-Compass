@@ -17,7 +17,8 @@ class tasks extends StatelessWidget {
   create: (context) => TaskCubit()..getTaskAll(),
   child: BlocConsumer<TaskCubit, TaskCubitStates>(
       listener: (context, state) {
-
+        if(state is UpdateStatusSuccessState)
+          TaskCubit.get(context).getTaskAll();
       },
       builder: (context, state) {
         var cubit = TaskCubit.get(context);
@@ -110,7 +111,7 @@ class tasks extends StatelessWidget {
                                                   if (cubit
                                                       .formKey.currentState!
                                                       .validate()) {
-                                                    cubit.createTask(name: cubit.nameController.text, time: cubit.timeController.text,
+                                                    cubit.addTask(name: cubit.nameController.text, time: cubit.timeController.text,
                                                         date: cubit.dateController.text);
                                                     Navigator.pop(context);
                                                   }
