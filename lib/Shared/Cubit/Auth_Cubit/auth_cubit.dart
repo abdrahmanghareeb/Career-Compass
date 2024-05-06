@@ -9,6 +9,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
+import '../../../Layouts/HomeScreen.dart';
+import '../../Constants/Constants.dart';
+
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
@@ -17,10 +20,7 @@ class AuthCubit extends Cubit<AuthState> {
   TextEditingController emailController = TextEditingController();
   TextEditingController fullNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  TextEditingController jobDescriptionController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
-  TextEditingController jobTitleController = TextEditingController();
-  TextEditingController feedbackController = TextEditingController();
 
   var user;
 
@@ -28,19 +28,18 @@ class AuthCubit extends Cubit<AuthState> {
 
   static AuthCubit get(context) => BlocProvider.of(context);
 
+//================================    Sign out    ===============================================
   void changeRegisterState(
       {required email, required password, required fullName, required phone}) {
     emit(RegisterLoadingState());
     FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password)
         .then((value) {
-      print(value.user?.email);
-      print(value.user?.phoneNumber);
-      print(value.user?.uid);
       emit(RegisterSuccessState());
-      ChangeCreateUserState(
+      Create_User(
+          photo: user_profile_photo,
           phone: phone,
-          email: value.user?.email,
+          email: email,
           name: fullName,
           uid: value.user?.uid);
       fullNameController.text = "";
@@ -54,6 +53,7 @@ class AuthCubit extends Cubit<AuthState> {
     });
   }
 
+//================================      Login     ===============================================
   void changeLoginState({required email, required password, fullName = ""}) {
     emit(LoginLoadingtate());
     FirebaseAuth.instance
@@ -65,43 +65,81 @@ class AuthCubit extends Cubit<AuthState> {
       emit(LoginSuccessState());
       emailController.text = "";
       passwordController.text = "";
-      getUserState();
+      Get_User();
     }).onError((error, stackTrace) {
       showToast(msg: error.toString());
       emit(LoginErrorState());
     });
   }
 
-  void ChangeCreateUserState(
-      {required name, required uid, required email, required phone}) {
-    emit(createUserLoadingState());
-    var model = userModel(uid: uid, email: AutofillHints.email, phone: phone, fullName: name);
+//================================ get & create & update user ============================================
+
+  void Create_User(
+      {required name, required uid, required email, required phone, photo}) {
+    emit(CreateUserLoadingState());
+    var model = userModel(
+        uid: uid,
+        email: AutofillHints.email,
+        phone: phone,
+        fullName: name,
+        photo: photo);
     FirebaseFirestore.instance
         .collection("users")
         .doc(uid)
         .set(model.toMap())
         .then((value) {
-      emit(createUserSuccessState());
+      emit(CreateUserSuccessState());
     }).onError((error, stackTrace) {
       print("Error is :       ${error.toString()}");
-      emit(createUserErrorState());
+      emit(CreateUserErrorState());
     });
   }
 
-  void getUserState() {
+  void Update_User(
+      {required uid,
+        name,
+      email,
+      phone,
+      photo,
+      jobDis,
+      jobTitle,
+      required context}) {
+    emit((UpdateUserLoadingState()));
+    var model = userModel(
+        uid: uid,
+        email: email,
+        job_title: jobTitle,
+        job_description: jobDis,
+        phone: phone,
+        fullName: name,
+        photo: photo);
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(uid)
+        .update(model.toMap())
+        .then((value) {
+      emit(UpdateUserSuccessState());
+      showToast(msg: "Summitted Successfully");
+      navigateTo(context: context, widget: HomeScreen());
+    }).onError((error, stackTrace) {
+      print("Error is :       ${error.toString()}");
+      emit(UpdateUserErrorState());
+    });
+  }
+
+  void Get_User() {
     emit(GetUserLoadingState());
     FirebaseFirestore.instance.collection("users").doc(uid).get().then((value) {
-      value.data();
-      print("value.data() :  ${value.data()}");
       emit(GetUserSuccessState());
       user = userModel.fromJson(value.data());
-      print("user :  ${user}");
+
     }).onError((error, stackTrace) {
       print(error.toString());
       emit(GetUserErrorState());
     });
   }
 
+//=========================================== sign out ===============================================
   void changeSignOutState() {
     if (FirebaseAuth.instance.currentUser == null)
       emit(SignOutSuccessState());
@@ -109,10 +147,9 @@ class AuthCubit extends Cubit<AuthState> {
       emit(SignOutErrorState());
   }
 
+//=========================================== password icon ==========================================
+
   void changeIconState() {
     emit(LoginIconState());
   }
-
-
-
 }

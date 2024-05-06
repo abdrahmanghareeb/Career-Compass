@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AuthCubit()..getUserState(),
+      create: (context) => AuthCubit()..Get_User(),
       child: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if(state is SignOutSuccessState)

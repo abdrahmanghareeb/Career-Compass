@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 
+import 'Models/UserModel.dart';
 import 'Shared/Cubit/app_observer.dart';
 
 void main() async {

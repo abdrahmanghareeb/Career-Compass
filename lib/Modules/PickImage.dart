@@ -1,8 +1,11 @@
 import 'dart:io';
 
+import 'package:career_compass/Shared/Cubit/App_Cubit/app_cubit.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../Shared/Constants/Constants.dart';
 
 class PickImage extends StatefulWidget {
   const PickImage({super.key});
@@ -12,31 +15,32 @@ class PickImage extends StatefulWidget {
 }
 
 class _PickImageState extends State<PickImage> {
-  Uint8List? _image;
-  File? selectedIMage;
+  Uint8List? _image ;
+  String networkImage = user_profile_photo;
+  // File? selectedIMage;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          _image != null
-              ? CircleAvatar(
-              radius: 100, backgroundImage: MemoryImage(_image!))
-              : const CircleAvatar(
-            radius: 100,
-            backgroundImage: NetworkImage(
-                "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"),
-          ),
-          Positioned(
-              bottom: -0,
-              left: 140,
-              child: IconButton(
-                  onPressed: () {
-                    showImagePickerOption(context);
-                  },
-                  icon: const Icon(Icons.add_a_photo)))
-        ],
-      ),
+    return Center(
+      child: Stack(
+          children: [
+            _image != null
+                ? CircleAvatar(
+                radius: 70, backgroundImage: MemoryImage(_image!))
+                :  CircleAvatar(
+              radius: 70,
+              backgroundImage: NetworkImage(
+                  networkImage),
+            ),
+            Positioned(
+                bottom: 0,
+                right: 0,
+                child: IconButton(
+                    onPressed: () {
+                      showImagePickerOption(context);
+                    },
+                    icon: const Icon(Icons.add_a_photo)))
+          ],
+        ),
     );
   }
 
@@ -97,12 +101,14 @@ class _PickImageState extends State<PickImage> {
 
 //Gallery
   Future _pickImageFromGallery() async {
-    final returnImage =
-    await ImagePicker().pickImage(source: ImageSource.gallery);
+    final returnImage = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (returnImage == null) return;
     setState(() {
-      selectedIMage = File(returnImage.path);
+      // selectedIMage = File(returnImage.path);
       _image = File(returnImage.path).readAsBytesSync();
+      AppCubit.profilePhotoPath = returnImage.path;
+      AppCubit.profilePhotoFile = File(returnImage.path);
+      print("profile photo path ${AppCubit.profilePhotoPath}");
     });
     Navigator.of(context).pop(); //close the model sheet
   }
@@ -113,8 +119,11 @@ class _PickImageState extends State<PickImage> {
     await ImagePicker().pickImage(source: ImageSource.camera);
     if (returnImage == null) return;
     setState(() {
-      selectedIMage = File(returnImage.path);
+      // selectedIMage = File(returnImage.path);
       _image = File(returnImage.path).readAsBytesSync();
+      AppCubit.profilePhotoPath = returnImage.path;
+      AppCubit.profilePhotoFile = File(returnImage.path);
+      print("profile photo path ${AppCubit.profilePhotoPath}");
     });
     Navigator.of(context).pop();
   }
