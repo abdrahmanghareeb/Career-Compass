@@ -21,10 +21,6 @@ class AuthCubit extends Cubit<AuthState> {
   TextEditingController phoneController = TextEditingController();
   TextEditingController jobTitleController = TextEditingController();
   TextEditingController feedbackController = TextEditingController();
-  TextEditingController feedBackController = TextEditingController();
-
-  List<String> ListCountry = ['Egypt', 'Armenia', 'India', 'China'];
-  List<String> listLanguage = ['English', 'Japanese', 'French', 'German'];
 
   var user;
 
@@ -117,9 +113,6 @@ class AuthCubit extends Cubit<AuthState> {
     emit(LoginIconState());
   }
 
-  void changeSetDropDownState() {
-    emit(SetDropDownState());
-  }
 
 
 }

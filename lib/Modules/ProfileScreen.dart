@@ -1,18 +1,11 @@
-import 'dart:html';
-import 'dart:typed_data';
 
-import 'package:career_compass/Models/test.dart';
 import 'package:career_compass/Shared/Constants/color.dart';
 import 'package:career_compass/Shared/Cubit/Auth_Cubit/auth_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
-
 import '../Shared/Components/components.dart';
-
-//profileScreen UI done..
 
 class ProfileScreen extends StatelessWidget {
 
