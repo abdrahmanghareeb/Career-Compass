@@ -1,9 +1,5 @@
 import 'package:career_compass/Shared/Components/components.dart';
-import 'package:career_compass/Shared/Constants/color.dart';
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
-
-import '../Shared/Components/CustomShape.dart';
 
 class HomeScreen extends StatelessWidget{
   @override
@@ -33,24 +29,24 @@ class HomeScreen extends StatelessWidget{
                           Icon(Icons.star),Icon(Icons.star),Icon(Icons.star),Icon(Icons.star),Icon(Icons.star_half_sharp),
                         ],
                       ),
-                      SizedBox(height: 15,),
+                      const SizedBox(height: 15,),
                       const Text('Rate the App'),
-                      SizedBox(height: 30,),
+                      const SizedBox(height: 30,),
                       drawerItem(icon: Icons.person, text: 'Profile' , function: (){}),
-                      SizedBox(height: 30,),
+                      const SizedBox(height: 30,),
                       drawerItem(icon: Icons.chat, text: 'Chat Rooms' , function: (){}),
-                      SizedBox(height: 30,),
+                      const SizedBox(height: 30,),
                       drawerItem(icon: Icons.dashboard_customize_outlined, text: 'Chatbot',function: (){}),
-                      SizedBox(height: 30,),
+                      const SizedBox(height: 30,),
                       drawerItem(icon: Icons.settings, text: 'Settings',function: (){}),
                     ],
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(width: 1,),
                       Padding(
-                        padding: const EdgeInsets.all(20.0),
+                        padding: EdgeInsets.all(20.0),
                         child: Text('Sign Out',style: TextStyle(color: Colors.redAccent,fontWeight: FontWeight.bold,fontSize: 19),),
                       ),
                     ],
