@@ -16,3 +16,7 @@ final class RegisterErrorState extends AppState {}
 final class createUserSuccessState extends AppState {}
 final class createUserLoadingState extends AppState {}
 final class createUserErrorState extends AppState {}
+
+//-------------------settings
+final class SetDropDownState extends AppState {}
+

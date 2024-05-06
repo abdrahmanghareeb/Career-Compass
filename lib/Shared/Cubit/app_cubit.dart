@@ -21,6 +21,10 @@ class AppCubit extends Cubit<AppState> {
   TextEditingController phoneController = TextEditingController();
   TextEditingController jobTitleController = TextEditingController();
   TextEditingController feedbackController = TextEditingController();
+  TextEditingController feedBackController = TextEditingController();
+
+  List<String> ListCountry = ['Egypt', 'Armenia', 'India', 'China'];
+  List<String> listLanguage = ['English', 'Japanese', 'French', 'German'];
 
   static AppCubit get(context) => BlocProvider.of(context);
 
@@ -70,8 +74,7 @@ class AppCubit extends Cubit<AppState> {
   void ChangeCreateUserState(
       {required name, required uid, required email, required phone}) {
     emit(createUserLoadingState());
-    var model = userModel(
-        uid: uid, email: AutofillHints.email, phone: phone, fullName: name);
+    var model = userModel(uid: uid, email: AutofillHints.email, phone: phone, fullName: name);
     FirebaseFirestore.instance
         .collection("users")
         .doc(uid)
@@ -87,4 +90,10 @@ class AppCubit extends Cubit<AppState> {
   void changeIconState() {
     emit(LoginIconState());
   }
+
+  void changeSetDropDownState() {
+    emit(SetDropDownState());
+  }
+
+
 }
