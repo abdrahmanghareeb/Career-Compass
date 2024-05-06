@@ -1,0 +1,29 @@
+part of 'auth_cubit.dart';
+
+@immutable
+sealed class AuthState {}
+
+final class AuthInitial extends AuthState {}
+
+//for the eye icon in the password field
+final class LoginIconState extends AuthState {}
+//--------------------------------------------------//
+final class LoginSuccessState extends AuthState {}
+final class LoginLoadingtate extends AuthState {}
+final class LoginErrorState extends AuthState {}
+//--------------------------------------------------//
+final class RegisterSuccessState extends AuthState {}
+final class RegisterLoadingState extends AuthState {}
+final class RegisterErrorState extends AuthState {}
+//--------------------------------------------------//
+final class createUserSuccessState extends AuthState {}
+final class createUserLoadingState extends AuthState {}
+final class createUserErrorState extends AuthState {}
+//--------------------------------------------------//
+final class GetUserSuccessState extends AuthState {}
+final class GetUserLoadingState extends AuthState {}
+final class GetUserErrorState extends AuthState {}
+//--------------------------------------------------//
+final class SignOutSuccessState extends AuthState {}
+final class SignOutErrorState extends AuthState {}
+

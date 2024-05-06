@@ -9,10 +9,10 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
-part 'app_state.dart';
+part 'auth_state.dart';
 
-class AppCubit extends Cubit<AppState> {
-  AppCubit() : super(AppInitial());
+class AuthCubit extends Cubit<AuthState> {
+  AuthCubit() : super(AuthInitial());
 
   TextEditingController emailController = TextEditingController();
   TextEditingController fullNameController = TextEditingController();
@@ -22,10 +22,14 @@ class AppCubit extends Cubit<AppState> {
   TextEditingController jobTitleController = TextEditingController();
   TextEditingController feedbackController = TextEditingController();
 
-  static AppCubit get(context) => BlocProvider.of(context);
+  var user;
+
+  var uid = FirebaseAuth.instance.currentUser?.uid;
+
+  static AuthCubit get(context) => BlocProvider.of(context);
 
   void changeRegisterState(
-      {required email, required password, required fullName , required phone}) {
+      {required email, required password, required fullName, required phone}) {
     emit(RegisterLoadingState());
     FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password)
@@ -61,6 +65,7 @@ class AppCubit extends Cubit<AppState> {
       emit(LoginSuccessState());
       emailController.text = "";
       passwordController.text = "";
+      getUserState();
     }).onError((error, stackTrace) {
       showToast(msg: error.toString());
       emit(LoginErrorState());
@@ -82,6 +87,27 @@ class AppCubit extends Cubit<AppState> {
       print("Error is :       ${error.toString()}");
       emit(createUserErrorState());
     });
+  }
+
+  void getUserState() {
+    emit(GetUserLoadingState());
+    FirebaseFirestore.instance.collection("users").doc(uid).get().then((value) {
+      value.data();
+      print("value.data() :  ${value.data()}");
+      emit(GetUserSuccessState());
+      user = userModel.fromJson(value.data());
+      print("user :  ${user}");
+    }).onError((error, stackTrace) {
+      print(error.toString());
+      emit(GetUserErrorState());
+    });
+  }
+
+  void changeSignOutState() {
+    if (FirebaseAuth.instance.currentUser == null)
+      emit(SignOutSuccessState());
+    else
+      emit(SignOutErrorState());
   }
 
   void changeIconState() {
