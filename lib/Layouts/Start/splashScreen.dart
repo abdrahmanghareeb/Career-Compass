@@ -1,11 +1,12 @@
-import 'package:career_compass/Layouts/GetStarted.dart';
-import 'package:career_compass/Layouts/HomeScreen.dart';
+import 'package:career_compass/Layouts/Start/GetStarted.dart';
+import 'package:career_compass/Layouts/Home%20&%20Profile%20&%20Settings/HomeScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import '../Shared/Components/components.dart';
+
+import '../../Shared/Components/components.dart';
 
 class SplashScreen extends StatefulWidget{
   @override

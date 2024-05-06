@@ -1,4 +1,4 @@
-import 'package:career_compass/Layouts/LoginScreen.dart';
+import 'package:career_compass/Layouts/Login%20&%20Register/LoginScreen.dart';
 import 'package:career_compass/Shared/Components/components.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

@@ -1,4 +1,4 @@
-class userModel{
+class UserModel{
    String email = "";
    String uid = "";
    String? fullName = "";
@@ -7,11 +7,11 @@ class userModel{
    String? job_description = "";
    String? job_title = "";
 
-  userModel(
+  UserModel(
       {required this.uid, required this.email, this.fullName, this.phone, this.job_description, this.job_title, this.photo});
 
-  factory userModel.fromJson(Map<String, dynamic>? json){
-         return userModel(
+  factory UserModel.fromJson(Map<String, dynamic>? json){
+         return UserModel(
            uid: json?["uid"], email: json?["email"],
            fullName:  json?["fullName"],
            job_description:  json?["job_description"],

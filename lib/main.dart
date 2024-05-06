@@ -1,6 +1,8 @@
 import 'dart:io';
 
-import 'package:career_compass/Layouts/splashScreen.dart';
+import 'package:career_compass/Layouts/Home%20&%20Profile%20&%20Settings/HomeScreen.dart';
+import 'package:career_compass/Layouts/Start/splashScreen.dart';
+import 'package:career_compass/Layouts/Task%20Manager/TaskManagerScreen.dart';
 import 'package:career_compass/Shared/Constants/color.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +37,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: HexColor(main_color)),
           applyElevationOverlayColor: false,
           appBarTheme: AppBarTheme(
               color: HexColor(main_color),

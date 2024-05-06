@@ -1,3 +1,6 @@
+import 'package:career_compass/Layouts/Home%20&%20Profile%20&%20Settings/SettingsScreen.dart';
+import 'package:career_compass/Layouts/Room/RoomsScreen.dart';
+import 'package:career_compass/Layouts/Task%20Manager/TaskManagerScreen.dart';
 import 'package:career_compass/Shared/Constants/Constants.dart';
 import 'package:career_compass/Shared/Constants/color.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
@@ -7,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-import '../../Modules/ProfileScreen.dart';
+import '../../Layouts/Home & Profile & Settings/ProfileScreen.dart';
 import 'CustomShape.dart';
 
 void navigateTo({@required context, @required widget}) {
@@ -108,7 +111,8 @@ Widget TextAppBar({required text}) {
   return Text(text,
       style: TextStyle(
         fontWeight: FontWeight.bold,
-        fontSize: 25,
+        color: Colors.black54,
+        fontSize: 23,
       ));
 }
 
@@ -255,23 +259,37 @@ Widget appDrawer ({required cubit , required context}){
                   height: 30,
                 ),
                 drawerItem(
-                    icon: Icons.chat,
-                    text: 'Chat Rooms',
-                    function: () {}),
+                    icon: Icons.menu_open,
+                    text: 'Task Manager',
+                    function: () {
+                      navigateTo(context: context, widget: TaskManagerScreen());
+                    }),
                 SizedBox(
                   height: 30,
                 ),
                 drawerItem(
-                    icon: Icons.dashboard_customize_outlined,
-                    text: 'Chatbot',
-                    function: () {}),
+                    icon: Icons.chat,
+                    text: 'Chat Rooms',
+                    function: () {
+                      navigateTo(context: context, widget: RoomsScreen());
+                    }),
                 SizedBox(
                   height: 30,
                 ),
+                // drawerItem(
+                //     icon: Icons.dashboard_customize_outlined,
+                //     text: 'Chatbot',
+                //     function: () {
+                //     }),
+                // SizedBox(
+                //   height: 30,
+                // ),
                 drawerItem(
                     icon: Icons.settings,
                     text: 'Settings',
-                    function: () {}),
+                    function: () {
+                      navigateTo(context: context, widget: SettingsScreen());
+                    }),
               ],
             ),
             Row(
