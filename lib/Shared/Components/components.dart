@@ -1,6 +1,8 @@
+import 'package:career_compass/Shared/Constants/Constants.dart';
 import 'package:career_compass/Shared/Constants/color.dart';
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -203,8 +205,11 @@ Widget appDrawer ({required cubit , required context}){
                 SizedBox(
                   height: 70,
                 ),
-                Image.asset("assets/userPhoto.png",
-                    width: 150, height: 150),
+                CircleAvatar(
+                  radius: 70,
+                  backgroundImage: NetworkImage(
+                      user_profile_photo),
+                ),
                 SizedBox(
                   height: 20,
                 ),
