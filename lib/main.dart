@@ -1,6 +1,9 @@
 import 'dart:io';
 
 import 'package:career_compass/Layouts/Home%20&%20Profile%20&%20Settings/HomeScreen.dart';
+import 'package:career_compass/Layouts/Login%20&%20Register/LoginScreen.dart';
+import 'package:career_compass/Layouts/Start/FingerprintScreen.dart';
+import 'package:career_compass/Layouts/Start/GetStarted.dart';
 import 'package:career_compass/Layouts/Start/splashScreen.dart';
 import 'package:career_compass/Layouts/Task%20Manager/TaskManagerScreen.dart';
 import 'package:career_compass/Shared/Constants/color.dart';
@@ -51,7 +54,7 @@ class MyApp extends StatelessWidget {
           // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           // useMaterial3: true,
           ),
-      home: SplashScreen(),
+      home: GetStartedScreen(),
     );
   }
 }

@@ -15,4 +15,5 @@ final class UpdateProfileSuccessState extends AppState {}
 final class UpdateProfileErrorState extends AppState {}
 //-------------------settings
 final class SetDropDownState extends AppState {}
+final class SetFingerprintState extends AppState {}
 

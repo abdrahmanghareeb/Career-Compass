@@ -1,4 +1,5 @@
 import 'package:career_compass/Shared/Constants/color.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -38,23 +39,41 @@ class _RoomsScreenState extends State<RoomsScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: ListView.builder(
-          itemCount: item.length,
-          itemBuilder: (context, index) {
-            return Row(
-              children: [
-                Image(image: AssetImage(item[index]['image']!), width: 100, height: 150,),
-                SizedBox(width: 15,),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(item[index]['name']!, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-                    Text(item[index]['des']!, maxLines: 2, overflow: TextOverflow.ellipsis,),
-                  ],
-                ),
-              ],
-            );
-          },
+        child: Column(
+          children: [
+            Container(
+              color: Colors.yellow,
+              child: const Row(
+                children: [
+                  Icon(Icons.error_outline),
+                  SizedBox(width: 30,),
+                  Text('This page is not available now'),
+                ],
+              ),
+            ),
+            SingleChildScrollView(
+              child: ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: item.length,
+                itemBuilder: (context, index) {
+                  return Row(
+                    children: [
+                      Image(image: AssetImage(item[index]['image']!), width: 100, height: 150,),
+                      SizedBox(width: 15,),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(item[index]['name']!, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                          Text(item[index]['des']!, maxLines: 2, overflow: TextOverflow.ellipsis,),
+                        ],
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
