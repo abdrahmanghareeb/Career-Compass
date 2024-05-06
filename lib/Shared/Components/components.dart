@@ -25,7 +25,9 @@ void navigateReplacementTo({@required context, @required widget}) {
 }
 
 Widget defaultFormField(
-    {prefixIcon,
+    {
+       height ,
+      prefixIcon,
     suffixIcon,
     onIconTap,
     obsecure = false,
@@ -35,10 +37,11 @@ Widget defaultFormField(
     color = "#FFFFFF",
     TextInputType = TextInputType.text}) {
   return Container(
+    height: height,
       decoration: BoxDecoration(
         color: HexColor(color),
         border: null,
-        borderRadius: BorderRadius.horizontal(
+        borderRadius: const BorderRadius.horizontal(
             left: Radius.circular(15), right: Radius.circular(15)),
       ),
       child: TextFormField(

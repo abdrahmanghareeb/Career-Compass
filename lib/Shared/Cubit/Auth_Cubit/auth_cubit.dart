@@ -21,6 +21,10 @@ class AuthCubit extends Cubit<AuthState> {
   TextEditingController phoneController = TextEditingController();
   TextEditingController jobTitleController = TextEditingController();
   TextEditingController feedbackController = TextEditingController();
+  TextEditingController feedBackController = TextEditingController();
+
+  List<String> ListCountry = ['Egypt', 'Armenia', 'India', 'China'];
+  List<String> listLanguage = ['English', 'Japanese', 'French', 'German'];
 
   var user;
 
@@ -75,8 +79,7 @@ class AuthCubit extends Cubit<AuthState> {
   void ChangeCreateUserState(
       {required name, required uid, required email, required phone}) {
     emit(createUserLoadingState());
-    var model = userModel(
-        uid: uid, email: AutofillHints.email, phone: phone, fullName: name);
+    var model = userModel(uid: uid, email: AutofillHints.email, phone: phone, fullName: name);
     FirebaseFirestore.instance
         .collection("users")
         .doc(uid)
@@ -113,4 +116,10 @@ class AuthCubit extends Cubit<AuthState> {
   void changeIconState() {
     emit(LoginIconState());
   }
+
+  void changeSetDropDownState() {
+    emit(SetDropDownState());
+  }
+
+
 }
