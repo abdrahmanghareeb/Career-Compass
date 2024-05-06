@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 
 import '../Shared/Components/components.dart';
-import '../Shared/Cubit/app_cubit.dart';
+import '../Shared/Cubit/Auth_Cubit/auth_cubit.dart';
 
 class RegisterScreen extends StatelessWidget {
 
@@ -21,8 +21,8 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AppCubit(),
-      child: BlocConsumer<AppCubit, AppState>(
+      create: (context) => AuthCubit(),
+      child: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is RegisterErrorState) {
             Fluttertoast.showToast(
@@ -36,96 +36,95 @@ class RegisterScreen extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          var cubit = AppCubit.get(context);
+          var cubit = AuthCubit.get(context);
           return Form(
             key: formKey,
             child: Scaffold(
-              body: Stack(
-                children: [
-                  Image.asset("assets/background1.png"),
-                  Center(
-                    child: Padding(
+              body: SingleChildScrollView(
+                child: Stack(
+                  children: [
+                    Image.asset("assets/background1.png", width: double.infinity,),
+                    Padding(
                       padding: const EdgeInsets.all(30.0),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SizedBox(height: 20),
-                            Text("Welcome buddy!",
-                                style: Theme.of(context).textTheme.titleLarge),
-                            const SizedBox(
-                              height: 30,
-                            ),
-                            defaultFormField(
-                                TextInputType: TextInputType.text,
-                                controller: cubit.fullNameController,
-                                label: "Enter Your Full Name",
-                                prefixIcon: Icons.email_outlined,
-                                validator: "Full Name is required!!"),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            defaultFormField(
-                                TextInputType: TextInputType.emailAddress,
-                                controller: cubit.emailController,
-                                label: "Enter Your Email",
-                                prefixIcon: Icons.email_outlined,
-                                validator: "Email is required!!"),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            defaultFormField(
-                                TextInputType: TextInputType.phone,
-                                controller: cubit.phoneController,
-                                label: "Phone Number Email",
-                                prefixIcon: Icons.email_outlined,
-                                validator: "Phone Number is required!!"),
-                            SizedBox(
-                              height: 20,
-                            ),
-                            defaultFormField(
-                                controller: cubit.passwordController,
-                                obsecure: show ,
-                                TextInputType: TextInputType.visiblePassword,
-                                label: "Enter password",
-                                onIconTap: () {
-                                  show = !show;
-                                  cubit.changeIconState();
-                                },
-                                prefixIcon: Icons.password_sharp,
-                                suffixIcon: show
-                                    ? Icons.remove_red_eye
-                                    : Icons.remove_red_eye_outlined,
-                                validator: "password is required!!"),
-                            SizedBox(
-                              height: 30,
-                            ),
-                            appButton(
-                                function: () {
-                                  formKey.currentState?.validate();
-                                  cubit.changeRegisterState(
-                                      email: cubit.emailController.text,
-                                      password: cubit.passwordController.text,
-                                      fullName: cubit.fullNameController.text,
-                                  phone: cubit.phoneController.text);
-                                },
-                                text: "Sign up"),
-                            SizedBox(height: 20),
-                            clickableText(
-                                context: context,
-                                mainText: "Already have an account ? ",
-                                secText: "Sign in",
-                                function: () {
-                                  navigateTo(
-                                      context: context, widget: LoginScreen());
-                                }),
-                          ],
-                        ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SizedBox(height: 120),
+                          Text("Welcome buddy!",
+                              style: Theme.of(context).textTheme.titleLarge),
+                          const SizedBox(
+                            height: 30,
+                          ),
+                          defaultFormField(
+                              TextInputType: TextInputType.text,
+                              controller: cubit.fullNameController,
+                              label: "Enter Your Full Name",
+                              prefixIcon: Icons.person,
+                              validator: "Full Name is required!!"),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          defaultFormField(
+                              TextInputType: TextInputType.emailAddress,
+                              controller: cubit.emailController,
+                              label: "Enter Your Email",
+                              prefixIcon: Icons.email_outlined,
+                              validator: "Email is required!!"),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          defaultFormField(
+                              TextInputType: TextInputType.phone,
+                              controller: cubit.phoneController,
+                              label: "Phone Number ",
+                              prefixIcon: Icons.phone,
+                              validator: "Phone Number is required!!"),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          defaultFormField(
+                              controller: cubit.passwordController,
+                              obsecure: show ,
+                              TextInputType: TextInputType.visiblePassword,
+                              label: "Enter password",
+                              onIconTap: () {
+                                show = !show;
+                                cubit.changeIconState();
+                              },
+                              prefixIcon: Icons.password_sharp,
+                              suffixIcon: show
+                                  ? Icons.remove_red_eye
+                                  : Icons.remove_red_eye_outlined,
+                              validator: "password is required!!"),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          appButton(
+                              function: () {
+                                formKey.currentState?.validate();
+                                cubit.changeRegisterState(
+                                    email: cubit.emailController.text,
+                                    password: cubit.passwordController.text,
+                                    fullName: cubit.fullNameController.text,
+                                phone: cubit.phoneController.text);
+                                navigateTo(context: context, widget: LoginScreen());
+                              },
+                              text: "Sign up"),
+                          SizedBox(height: 20),
+                          clickableText(
+                              context: context,
+                              mainText: "Already have an account ? ",
+                              secText: "Sign in",
+                              function: () {
+                                navigateTo(
+                                    context: context, widget: LoginScreen());
+                              }),
+                        ],
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           );

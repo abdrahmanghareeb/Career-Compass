@@ -1,8 +1,11 @@
 import 'package:career_compass/Shared/Constants/color.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
 
+import '../../Modules/ProfileScreen.dart';
 import 'CustomShape.dart';
 
 void navigateTo({@required context, @required widget}) {
@@ -182,5 +185,117 @@ Future<bool?> showToast({required msg}){
       backgroundColor: HexColor(main_color),
       textColor: Colors.white,
       fontSize: 16.0
+  );
+}
+
+Widget appDrawer ({required cubit , required context}){
+  return Drawer(
+    child: Center(
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 70,
+                ),
+                Image.asset("assets/userPhoto.png",
+                    width: 150, height: 150),
+                SizedBox(
+                  height: 20,
+                ),
+                ConditionalBuilder(
+                  condition: cubit.user == null,
+                  builder:(context) => Text('user name',
+                    style: TextStyle(
+                        fontSize: 25, fontWeight: FontWeight.bold),
+                  ),
+                  fallback:(context) => Text(
+                    '${cubit.user.fullName.toString()}',
+                    style: TextStyle(
+                        fontSize: 25, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.star),
+                    Icon(Icons.star),
+                    Icon(Icons.star),
+                    Icon(Icons.star),
+                    Icon(Icons.star_half_sharp),
+                  ],
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                const Text('Rate the App'),
+                SizedBox(
+                  height: 30,
+                ),
+                drawerItem(
+                    icon: Icons.person,
+                    text: 'Profile',
+                    function: () {
+                      navigateTo(context: context, widget: ProfileScreen());
+                    }),
+                SizedBox(
+                  height: 30,
+                ),
+                drawerItem(
+                    icon: Icons.chat,
+                    text: 'Chat Rooms',
+                    function: () {}),
+                SizedBox(
+                  height: 30,
+                ),
+                drawerItem(
+                    icon: Icons.dashboard_customize_outlined,
+                    text: 'Chatbot',
+                    function: () {}),
+                SizedBox(
+                  height: 30,
+                ),
+                drawerItem(
+                    icon: Icons.settings,
+                    text: 'Settings',
+                    function: () {}),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  width: 1,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: TextButton(
+                    child: const Text(
+                      'Sign Out',
+                      style: TextStyle(
+                          color: Colors.redAccent,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 19),
+                    ),
+                    onPressed: () {
+                      FirebaseAuth.instance.signOut();
+                      cubit.changeSignOutState();
+                    },
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+    ),
   );
 }

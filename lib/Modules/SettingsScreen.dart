@@ -4,7 +4,7 @@ import 'package:hexcolor/hexcolor.dart';
 
 import '../Shared/Components/components.dart';
 import '../Shared/Constants/color.dart';
-import '../Shared/Cubit/app_cubit.dart';
+import '../Shared/Cubit/App_Cubit/app_cubit.dart';
 
 class SettingsScreen extends StatelessWidget{
 
@@ -90,7 +90,7 @@ class SettingsScreen extends StatelessWidget{
                       defaultFormField(
                         height: 230.0,
                           color: Grey_color,
-                          controller: cubit.feedBackController,
+                          controller: cubit.feedbackController,
                           label: "Your feed back helps use improve our 100% free service."),
                       const SizedBox(height: 30),
                       appButton(function: (){ }, text: "Summit"),

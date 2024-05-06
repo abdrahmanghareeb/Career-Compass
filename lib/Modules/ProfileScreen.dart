@@ -1,31 +1,31 @@
+
 import 'package:career_compass/Shared/Constants/color.dart';
-import 'package:career_compass/Shared/Cubit/app_cubit.dart';
+import 'package:career_compass/Shared/Cubit/Auth_Cubit/auth_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../Shared/Components/components.dart';
 
-//profileScreen UI done..
-
 class ProfileScreen extends StatelessWidget {
+
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AppCubit(),
-      child: BlocConsumer<AppCubit, AppState>(
+      create: (context) => AuthCubit(),
+      child: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           // TODO: implement listener
         },
         builder: (context, state) {
-          var cubit = AppCubit.get(context);
+          var cubit = AuthCubit.get(context);
           return Scaffold(
             appBar: AppBarComponent(title: "Edit Profile" ,isSearch: false),
             body: SingleChildScrollView(
               child: SafeArea(
                 child: Padding(
-                  padding: const EdgeInsets.all(15.0),
+                  padding: const EdgeInsets.all(25.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,10 +33,7 @@ class ProfileScreen extends StatelessWidget {
                       Text("User Photo",
                           style: Theme.of(context).textTheme.titleLarge),
                       SizedBox(height: 15,),
-                      Center(
-                        child: Image.asset("assets/userPhoto.png",
-                            height: 100, width: 100),
-                      ),
+                      // PickImage(),
                       SizedBox(height: 15,),
                       Text("User Name",
                           style: Theme.of(context).textTheme.titleLarge),
@@ -68,7 +65,9 @@ class ProfileScreen extends StatelessWidget {
                             label: "Enter your job description"),
                       ),
                       SizedBox(height: 30),
-                      appButton(function: (){ }, text: "Summit")
+                      appButton(function: (){ }, text: "Summit"),
+                      SizedBox(height: 30),
+
                     ],
                   ),
                 ),
@@ -79,4 +78,8 @@ class ProfileScreen extends StatelessWidget {
       ),
     );
   }
+
+
+
+
 }

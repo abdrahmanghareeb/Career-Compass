@@ -1,5 +1,7 @@
+import 'package:career_compass/Layouts/HomeScreen.dart';
 import 'package:career_compass/Layouts/RegisterScreen.dart';
 import 'package:career_compass/Shared/Constants/color.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -7,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 import '../Shared/Components/components.dart';
-import '../Shared/Cubit/app_cubit.dart';
+import '../Shared/Cubit/Auth_Cubit/auth_cubit.dart';
 
 class LoginScreen extends StatelessWidget {
   var formKey = GlobalKey<FormState>();
@@ -18,26 +20,32 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AppCubit(),
-      child: BlocConsumer<AppCubit, AppState>(
-        listener: (context, state) {},
+      create: (context) => AuthCubit(),
+      child: BlocConsumer<AuthCubit, AuthState>(
+        listener: (context, state) {
+          if(state is LoginSuccessState || state is GetUserSuccessState )
+            if(state is LoginSuccessState || state is GetUserSuccessState ) {
+              navigateReplacementTo(context: context, widget: HomeScreen());
+            }
+
+        },
         builder: (context, state) {
-          var cubit = AppCubit.get(context);
+          var cubit = AuthCubit.get(context);
           return Form(
             key: formKey,
             child: Scaffold(
-              body: Stack(
-                children: [
-                  Image.asset("assets/background1.png"),
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(30.0),
-                      child: SingleChildScrollView(
+              body: Center(
+                child: SingleChildScrollView(
+                  child: Stack(
+                    children: [
+                      Image.asset("assets/background1.png",),
+                      Padding(
+                        padding: const EdgeInsets.all(30.0),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            SizedBox(height: 20),
+                            SizedBox(height: 100),
                             Text("Welcome Back!",
                                 style: Theme.of(context).textTheme.titleLarge),
                             const SizedBox(
@@ -77,6 +85,7 @@ class LoginScreen extends StatelessWidget {
                                   cubit.changeLoginState(
                                       email: cubit.emailController.text,
                                       password: cubit.passwordController.text,);
+
                                 },
                                 text: "Sign in"),
                             SizedBox(height: 20),
@@ -94,9 +103,9 @@ class LoginScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
           );
