@@ -322,3 +322,33 @@ Widget appDrawer ({required cubit , required context}){
     ),
   );
 }
+
+Widget ChatWidget({@required text ,likeFunction,  unlikeFunction  ,@required index , @required imageAsset , @required color ,@required isResponse}){
+  return Container(
+    width: double.infinity,
+    decoration: BoxDecoration(color: color),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Container(height : 40 , width: 40 ,child: Image.asset(imageAsset)),
+        ),
+        SizedBox(width: 10,),
+        Expanded(child: TextWidget("${text}")),
+
+      ],
+    ),
+  );
+}
+
+Widget TextWidget(String text){
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Text(
+      "$text",
+      style: TextStyle(color: Colors.white70 , fontSize: 18),
+    ),
+  );
+}

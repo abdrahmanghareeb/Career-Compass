@@ -67,4 +67,8 @@ class AppCubit extends Cubit<AppState> {
     }
   }
 
+  void ChangeSetFingerprintState(){
+    emit(SetFingerprintState());
+  }
+
 }

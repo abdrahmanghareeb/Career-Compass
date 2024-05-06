@@ -1,5 +1,6 @@
 import 'package:career_compass/Layouts/Start/GetStarted.dart';
 import 'package:career_compass/Layouts/Home%20&%20Profile%20&%20Settings/HomeScreen.dart';
+import 'package:career_compass/Shared/Constants/Constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../Shared/Components/components.dart';
+import 'FingerprintScreen.dart';
 
 class SplashScreen extends StatefulWidget{
   @override
@@ -28,7 +30,11 @@ class _SplashScreenState extends State<SplashScreen> {
       if(FirebaseAuth.instance.currentUser == null) {
         navigateReplacementTo(context: context, widget: GetStartedScreen());
       } else {
-        navigateReplacementTo(context: context, widget: HomeScreen());
+        //navigate to fingerprint screen if Auth_with_fingerprint = true
+        if(Auth_with_fingerprint == true)
+          navigateReplacementTo(context: context, widget: FingerprintScreen());
+        else
+         navigateReplacementTo(context: context, widget: HomeScreen());
       }
     });
 
