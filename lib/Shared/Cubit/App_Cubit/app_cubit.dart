@@ -1,17 +1,14 @@
-import 'dart:io';
-
 import 'package:bloc/bloc.dart';
-import 'package:career_compass/Shared/Cubit/Auth_Cubit/auth_cubit.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-
-// import 'package:firebase_storage/firebase_storage.dart' as fire_storage;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
-
 import '../../Constants/Constants.dart';
-
+import '../local/CasheHelper.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:geocoding/geocoding.dart';
 part 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {
@@ -68,7 +65,25 @@ class AppCubit extends Cubit<AppState> {
   }
 
   void ChangeSetFingerprintState(){
+    CasheHelper.setFingerKeyBool(value : Auth_with_fingerprint ,key: AuthFinger);
     emit(SetFingerprintState());
+  }
+
+  void updateFingerPrint(value){
+    FirebaseFirestore.instance.collection("users").doc(FirebaseAuth.instance.currentUser?.uid).update({"fingerprint" : value}).then((value) => emit(fingerprintState()));
+  }
+
+  static Future<String?> getCurrentCountry() async {
+    try {
+      Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+
+      List<Placemark> placemarks = await placemarkFromCoordinates(position.latitude, position.longitude);
+
+      return placemarks.first.country;
+    } catch (e) {
+      print(e);
+      return 'Failed to get country';
+    }
   }
 
 }

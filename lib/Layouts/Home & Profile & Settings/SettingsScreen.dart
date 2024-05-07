@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:career_compass/Shared/Cubit/Auth_Cubit/auth_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -12,6 +15,10 @@ import '../../Shared/Cubit/App_Cubit/app_cubit.dart';
 class SettingsScreen extends StatelessWidget {
   var language_init = "English";
   var country_init = "Egypt";
+
+  Future current_country =  AppCubit.getCurrentCountry().then((value) {
+    print("current country : $value");
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +111,8 @@ class SettingsScreen extends StatelessWidget {
                           CupertinoSwitch(
                             value: Auth_with_fingerprint,
                             onChanged: (value) {
-                              Auth_with_fingerprint = value;
+                              cubit.updateFingerPrint(Auth_with_fingerprint);
+                              Auth_with_fingerprint = !Auth_with_fingerprint;
                               print("$value");
                               cubit.ChangeSetFingerprintState();
                             },

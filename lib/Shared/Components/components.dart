@@ -232,20 +232,20 @@ Widget appDrawer ({required cubit , required context}){
                 const SizedBox(
                   height: 10,
                 ),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.star),
-                    Icon(Icons.star),
-                    Icon(Icons.star),
-                    Icon(Icons.star),
-                    Icon(Icons.star_half_sharp),
-                  ],
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                const Text('Rate the App'),
+                // const Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     Icon(Icons.star),
+                //     Icon(Icons.star),
+                //     Icon(Icons.star),
+                //     Icon(Icons.star),
+                //     Icon(Icons.star_half_sharp),
+                //   ],
+                // ),
+                // SizedBox(
+                //   height: 15,
+                // ),
+                // const Text('Rate the App'),
                 SizedBox(
                   height: 30,
                 ),

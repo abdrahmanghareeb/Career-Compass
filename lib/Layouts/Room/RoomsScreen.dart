@@ -39,41 +39,44 @@ class _RoomsScreenState extends State<RoomsScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: [
-            Container(
-              color: Colors.yellow,
-              child: const Row(
-                children: [
-                  Icon(Icons.error_outline),
-                  SizedBox(width: 30,),
-                  Text('This page is not available now'),
-                ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                height: 60,
+                color: Colors.yellow,
+                child: const Row(
+                  children: [
+                    Icon(Icons.error_outline),
+                    SizedBox(width: 30,),
+                    Text('This page is not available now' , overflow: TextOverflow.ellipsis,),
+                  ],
+                ),
               ),
-            ),
-            SingleChildScrollView(
-              child: ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: item.length,
-                itemBuilder: (context, index) {
-                  return Row(
-                    children: [
-                      Image(image: AssetImage(item[index]['image']!), width: 100, height: 150,),
-                      SizedBox(width: 15,),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(item[index]['name']!, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-                          Text(item[index]['des']!, maxLines: 2, overflow: TextOverflow.ellipsis,),
-                        ],
-                      ),
-                    ],
-                  );
-                },
+              SingleChildScrollView(
+                child: ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: item.length,
+                  itemBuilder: (context, index) {
+                    return Row(
+                      children: [
+                        Image(image: AssetImage(item[index]['image']!), width: 100, height: 150,),
+                        SizedBox(width: 15,),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(item[index]['name']!, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                            Text(item[index]['des']!, maxLines: 2, overflow: TextOverflow.ellipsis,),
+                          ],
+                        ),
+                      ],
+                    );
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

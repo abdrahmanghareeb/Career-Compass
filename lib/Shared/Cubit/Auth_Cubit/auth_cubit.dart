@@ -96,23 +96,9 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   void Update_User(
-      {required uid,
-      name,
-      email,
-      phone,
-      photo,
-      jobDis,
-      jobTitle,
-      required context}) {
+      {required uid, name, email, phone, photo, jobDis, jobTitle, required context}) {
     emit((UpdateUserLoadingState()));
-    var model = UserModel(
-        uid: uid,
-        email: email,
-        job_title: jobTitle,
-        job_description: jobDis,
-        phone: phone,
-        fullName: name,
-        photo: photo);
+    var model = UserModel(uid: uid, email: email, job_title: jobTitle, job_description: jobDis, phone: phone, fullName: name, photo: photo);
     FirebaseFirestore.instance
         .collection("users")
         .doc(uid)
@@ -127,11 +113,14 @@ class AuthCubit extends Cubit<AuthState> {
     });
   }
 
+
+
   void Get_User() {
     emit(GetUserLoadingState());
     FirebaseFirestore.instance.collection("users").doc(uid).get().then((value) {
       emit(GetUserSuccessState());
       user = UserModel.fromJson(value.data());
+      Auth_with_fingerprint  = user.fingerprint;
     }).onError((error, stackTrace) {
       print(error.toString());
       emit(GetUserErrorState());

@@ -1,12 +1,10 @@
 import 'dart:io';
 
-import 'package:career_compass/Layouts/Home%20&%20Profile%20&%20Settings/HomeScreen.dart';
-import 'package:career_compass/Layouts/Login%20&%20Register/LoginScreen.dart';
-import 'package:career_compass/Layouts/Start/FingerprintScreen.dart';
-import 'package:career_compass/Layouts/Start/GetStarted.dart';
 import 'package:career_compass/Layouts/Start/splashScreen.dart';
-import 'package:career_compass/Layouts/Task%20Manager/TaskManagerScreen.dart';
+import 'package:career_compass/Shared/Constants/Constants.dart';
 import 'package:career_compass/Shared/Constants/color.dart';
+import 'package:career_compass/Shared/Cubit/App_Cubit/app_cubit.dart';
+import 'package:career_compass/Shared/Cubit/local/CasheHelper.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,6 +18,10 @@ import 'Shared/Cubit/app_observer.dart';
 void main() async {
   Bloc.observer = MyBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
+
+  await CasheHelper.init();
+  bool? CacheValue = await CasheHelper.getFingerKeyBool(key: "$AuthFinger");
+
   if(Platform.isAndroid){
   await Firebase.initializeApp(
         options: const FirebaseOptions(
@@ -28,11 +30,18 @@ void main() async {
             messagingSenderId: "264491915352",
             projectId: "carrer-compas"));
   }
-  runApp(const MyApp());
+
+  bool Dummy = false;
+  if(CacheValue != null){
+    Dummy = CacheValue;
+  }
+  runApp( MyApp(Dummy));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool boolValue;
+
+  const MyApp(this.boolValue,{super.key});
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -54,7 +63,7 @@ class MyApp extends StatelessWidget {
           // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           // useMaterial3: true,
           ),
-      home: GetStartedScreen(),
+      home: SplashScreen(),
     );
   }
 }
