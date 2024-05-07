@@ -61,7 +61,7 @@ class _FingerprintScreenState extends State<FingerprintScreen> {
   Future<void> authenticateWithBiometrics() async {
     try {
       final authenticated = await auth.authenticate(
-        localizedReason: 'Authenticate with FingerPrint or Face ID',
+        localizedReason: 'Authenticate with Face ID or FingerPrint ',
         options: const AuthenticationOptions(
           stickyAuth: true,
           biometricOnly: true,

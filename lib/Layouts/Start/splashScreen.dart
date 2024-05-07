@@ -31,10 +31,8 @@ class _SplashScreenState extends State<SplashScreen> {
         navigateReplacementTo(context: context, widget: GetStartedScreen());
       } else {
         //navigate to fingerprint screen if Auth_with_fingerprint = true
-        if(Auth_with_fingerprint == true)
           navigateReplacementTo(context: context, widget: FingerprintScreen());
-        else
-         navigateReplacementTo(context: context, widget: HomeScreen());
+
       }
     });
 

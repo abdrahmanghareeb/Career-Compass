@@ -17,8 +17,9 @@ class tasks extends StatelessWidget {
   create: (context) => TaskCubit()..getTaskAll(),
   child: BlocConsumer<TaskCubit, TaskCubitStates>(
       listener: (context, state) {
-        if(state is UpdateStatusSuccessState)
+        if(state is UpdateStatusSuccessState || state is DeleteSuccessState)
           TaskCubit.get(context).getTaskAll();
+
       },
       builder: (context, state) {
         var cubit = TaskCubit.get(context);

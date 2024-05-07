@@ -8,11 +8,15 @@ class TaskModel {
   final status ;
   late final task_id ;
 
+  final uid;
 
-  TaskModel({required this.name, required this.time, required this.date , required this.status , required this.task_id});
+
+  TaskModel({required this.name, required this.time, required this.date , required this.status , required this.task_id ,required  this.uid});
 
   factory TaskModel.fromJson(Map<String, dynamic>? json){
-    return TaskModel(name: json?["name"], time : json?["time"], date : json?["date"] , status: json?["status"] , task_id: json?["task_id"]);
+    return TaskModel(
+        uid : json?["uid"],
+        name: json?["name"], time : json?["time"], date : json?["date"] , status: json?["status"] , task_id: json?["task_id"]);
   }
 
   Map<String, dynamic> toMap() {
@@ -21,7 +25,8 @@ class TaskModel {
       "time" : time,
       "date" : date,
       "status" : status,
-      "task_id" : task_id
+      "task_id" : task_id,
+      "uid" : uid,
     };
   }
 

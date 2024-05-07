@@ -5,6 +5,7 @@ import 'package:career_compass/Models/TaskModel.dart';
 import 'package:career_compass/Shared/Components/components.dart';
 import 'package:career_compass/Shared/Cubit/Task_Manager_Cubit/Task_Cubits.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -56,7 +57,7 @@ class TaskCubit extends Cubit<TaskCubitStates> {
   // }
   void addTask({required name, required time, required date}) {
     var model = TaskModel(
-        name: name, time: time, date: date, status: "new", task_id: "");
+        name: name, time: time, date: date, status: "new", task_id: "" , uid: FirebaseAuth.instance.currentUser?.uid);
     emit(CreateTaskLoadingState());
     FirebaseFirestore.instance
         .collection("tasks")
@@ -84,11 +85,13 @@ class TaskCubit extends Cubit<TaskCubitStates> {
       value.docs.forEach((element) {
         model = TaskModel.fromJson(element.data());
         // model.task_id  =  ;
-        if (model.status == "new")
-          newTasksList.add(model);
-        else if (model.status == "done")
-          doneTasksList.add(model);
-        else if (model.status == "archive") archiveTasksList.add(model);
+        if(  model.uid ==FirebaseAuth.instance.currentUser?.uid) {
+          if (model.status == "new")
+            newTasksList.add(model);
+          else if (model.status == "done")
+            doneTasksList.add(model);
+          else if (model.status == "archive") archiveTasksList.add(model);
+        }
       });
       emit(GetAllTasksSuccessState());
     }).onError((error, stackTrace) {
@@ -115,16 +118,19 @@ class TaskCubit extends Cubit<TaskCubitStates> {
     FirebaseFirestore.instance
         .collection("tasks")
         .doc(id)
-        .update({"status": "$status"})
-        .then((value) {
+        .update({"status": "$status"}).then((value) {
       emit(UpdateStatusSuccessState());
-      DeleteTask(id: id);
-    } );
+    });
   }
 
-void DeleteTask({required id }){
-  Future.delayed(Duration(milliseconds: 3000));
-  emit(DeleteLoadingState());
-    FirebaseFirestore.instance.collection("tasks").doc("$id").delete();
+  void DeleteTask({required id , required context}) {
+    emit(DeleteLoadingState());
+    FirebaseFirestore.instance
+        .collection("tasks")
+        .doc("$id")
+        .delete()
+        .then((value) {
+          emit(DeleteSuccessState());
+    });
   }
 }
